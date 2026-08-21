@@ -1,0 +1,7 @@
+model_name,rmse,mae,r2_score,earliness_cycles,false_alarm_rate,estimated_cost_savings_usd
+Quantum Support Vector Regressor (QSVR),83.146,69.364,0.1692,101.0,0.0204,3606875.51
+Quantum Kernel Ridge (QKRR),102.633,79.549,-0.2659,120.0,0.2245,3594630.61
+Classical Kernel Ridge (RBF),61.715,48.369,0.5423,38.0,0.0816,2881582.04
+Linear Ridge Regressor,43.707,37.979,0.7704,33.0,0.0816,2501782.04
+Random Forest Regressor,44.764,36.18,0.7592,32.0,0.051,2427658.78
+Classical SVR (RBF Kernel),47.762,38.878,0.7258,32.0,0.0714,2426434.29

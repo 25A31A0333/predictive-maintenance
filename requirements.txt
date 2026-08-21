@@ -1,0 +1,20 @@
+# Quantum AI / ML for Industrial Predictive Maintenance
+# Dependencies for Classical + Quantum Pipeline, Google Colab & Web Dashboard
+
+# Quantum Machine Learning
+pennylane>=0.35.0
+
+# Scientific Computing & Machine Learning
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+
+# Visualization & Dashboard
+matplotlib>=3.7.0
+plotly>=5.15.0
+streamlit>=1.30.0
+
+# Testing & Utilities
+pytest>=7.4.0
+tqdm>=4.66.0
