@@ -32,18 +32,22 @@ class QuantumKernelRidgeRegressor(BaseEstimator, RegressorMixin):
         feature_map_type: str = "zz",
         reps: int = 2,
         entanglement: str = "linear",
+        feature_map: Optional[str] = None,
+        backend: str = "default.qubit",
     ):
         self.alpha_reg = alpha_reg
         self.num_qubits = num_qubits
-        self.feature_map_type = feature_map_type
+        self.feature_map_type = feature_map or feature_map_type
         self.reps = reps
         self.entanglement = entanglement
+        self.backend = backend
 
         self.qk = QuantumKernel(
             num_qubits=num_qubits,
-            feature_map=feature_map_type,
+            feature_map=self.feature_map_type,
             reps=reps,
             entanglement=entanglement,
+            backend=backend,
         )
         self.X_train_: Optional[np.ndarray] = None
         self.dual_coef_: Optional[np.ndarray] = None

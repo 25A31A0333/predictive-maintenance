@@ -156,3 +156,15 @@ class PredictiveMaintenanceEvaluator:
         df_results = pd.DataFrame(results)
         df_results = df_results.sort_values(by="estimated_cost_savings_usd", ascending=False).reset_index(drop=True)
         return df_results
+
+    def compare_all_models(
+        self,
+        predictions_dict: Dict[str, np.ndarray],
+        y_true: np.ndarray,
+    ) -> pd.DataFrame:
+        """
+        Benchmarks all models given a dictionary of {model_name: y_pred} and true y_true.
+        """
+        models_dict = {name: (y_true, y_pred) for name, y_pred in predictions_dict.items()}
+        return self.benchmark_fleet(models_dict)
+

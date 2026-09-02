@@ -83,39 +83,63 @@ Evaluated on standardized refinery centrifugal compressor run-to-failure degrada
 ```
 ├── .github/
 │   └── workflows/
-│       └── ci.yml               # GitHub Actions Automated CI
+│       └── ci.yml                          # Automated GitHub Actions CI/CD
+├── experiments/                            # Experiment Tracking & Sweeps
+│   ├── experiment_history.csv              # Tracked benchmark runs
+│   └── runs/                               # JSON experiment run artifacts
 ├── notebooks/
-│   └── quantum_predictive_maintenance_colab.ipynb  # Self-contained Google Colab Tutorial
+│   ├── Run_In_The_Quantum_Computer.ipynb   # Interactive Qiskit 2.x & IBM Hardware Tutorial
+│   └── predictive_maintenance.ipynb        # End-to-End Quantum AI Platform Tutorial
 ├── src/
 │   ├── data/
-│   │   ├── __init__.py
-│   │   └── telemetry_generator.py # Industrial multi-sensor lifecycle data generator
-│   ├── quantum/
-│   │   ├── __init__.py
-│   │   ├── feature_maps.py       # Angle, ZZ-Entangling & Projected Quantum Maps
-│   │   ├── quantum_kernel.py     # Symmetric Quantum Kernel Gram Matrix Computer
-│   │   └── quantum_regressor.py  # QKRR, QSVR & Variational Quantum Regressors
+│   │   ├── feature_engineering.py          # Rolling statistics, velocity, acceleration, Hilbert scaling
+│   │   ├── streaming.py                    # Real-time sensor telemetry streaming generator
+│   │   └── telemetry_generator.py          # Industrial multi-asset run-to-failure simulator
+│   ├── experiments/
+│   │   ├── exporter.py                     # Predictions, metrics & anomaly CSV exporter
+│   │   └── tracker.py                      # ExperimentRun metadata logger & reproducibility engine
 │   ├── models/
-│   │   ├── __init__.py
-│   │   ├── classical_baselines.py# Classical SVR, Random Forest & Ridge baselines
-│   │   └── evaluator.py          # Industrial RMSE, MAE, Earliness & ROI Evaluator
-│   └── pipeline.py               # End-to-End Training & Benchmarking CLI Pipeline
+│   │   ├── anomaly_detector.py             # Unsupervised PCA, Mahalanobis & Isolation Forest anomaly scoring
+│   │   ├── classical_baselines.py          # Classical SVR, Random Forest & Ridge baselines
+│   │   ├── ensemble.py                     # Quantum-Classical stacking & weighted blending
+│   │   ├── evaluator.py                    # RMSE, MAE, R2, Earliness & Financial ROI calculator
+│   │   ├── explainability.py               # Model-agnostic permutation importance & sensor attribution
+│   │   ├── maintenance_advisor.py          # Rule-based decision-support work order generator
+│   │   ├── risk_classifier.py              # 3-Stage calibrated risk classification (NORMAL/WARNING/CRITICAL)
+│   │   └── rul_estimator.py                # RUL regression with 95% confidence uncertainty bounds
+│   ├── quantum/
+│   │   ├── experimenter.py                 # Systematic quantum hyperparameter sweeps (qubits, reps, maps)
+│   │   ├── feature_maps.py                 # Angle, ZZ-Entangling & Pauli-Z quantum feature circuits
+│   │   ├── ibm_quantum_setup.py            # IBM Quantum Platform & IBM Cloud IAM authentication
+│   │   ├── make_notebook.py                # Notebook builder and synchronizer
+│   │   ├── quantum_kernel.py               # Accelerated statevector quantum kernel Gram matrix computer
+│   │   ├── quantum_regressor.py            # QKRR, QSVR & Variational Quantum Regressors
+│   │   └── run_in_the_quantum_computer.py  # Qiskit Primitives V2 StatevectorSampler execution
+│   ├── pipeline.py                         # Unified end-to-end training & benchmarking CLI
+│   └── verify_project.py                   # Code syntax, security & token leak scanner
 ├── tests/
-│   └── test_quantum_pipeline.py  # Comprehensive Pytest Suite
-├── app.py                        # Streamlit Web Dashboard Application
-├── index.html                    # Standalone Real-Time Interactive Web Dashboard
-├── requirements.txt              # Pinned Python Dependencies
-└── README.md                     # Documentation
+│   ├── test_advanced_features.py           # Feature engineering & quantum scaling unit tests
+│   ├── test_anomaly_detector.py            # Anomaly scoring & threshold unit tests
+│   ├── test_explainability_and_advisor.py  # XAI & maintenance work order unit tests
+│   ├── test_quantum_experimenter.py        # Experiment tracker & sweeper unit tests
+│   ├── test_quantum_pipeline.py            # Qiskit V2, Sampler, PennyLane kernel & model tests
+│   ├── test_risk_classifier.py             # Failure risk classification unit tests
+│   └── test_rul_and_ensemble.py            # RUL uncertainty & ensemble stacking unit tests
+├── app.py                                  # 10-Tab Streamlit Industrial Analytics Platform
+├── index.html                              # Standalone Real-Time Interactive Web Dashboard
+├── Run_In_The_Quantum_Computer.ipynb       # Root notebook with Google Colab launcher
+├── requirements.txt                        # Pinned Python dependencies
+└── README.md                               # Project documentation
 ```
 
 ---
 
 ## 🚀 Quickstart Guide
 
-### 1. Open Directly in Google Colab (Zero Local Setup)
-Click the badge below to run the complete interactive tutorial with zero installation:
+### 1. Launch in Google Colab (Zero Installation)
+Click the badge below to run the complete interactive tutorial directly in the cloud:
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1j-HjEG_Sjbf1DLVhibpJOq31-v37xCGD?usp=sharing)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0333/predictive-maintenance/blob/main/Run_In_The_Quantum_Computer.ipynb)
 
 ---
 
@@ -123,8 +147,8 @@ Click the badge below to run the complete interactive tutorial with zero install
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/quantum-predictive-maintenance.git
-cd quantum-predictive-maintenance
+git clone https://github.com/25A31A0333/predictive-maintenance.git
+cd predictive-maintenance
 
 # Install dependencies
 pip install -r requirements.txt
