@@ -87,15 +87,15 @@ def push_to_github(
 
     print(f"\n[*] Uploading to https://github.com/{username}/{repo_name} (branch: {branch})...")
     try:
-        # Push main branch
-        ref_spec = f"refs/heads/{branch}:refs/heads/{branch}".encode("ascii")
+        # Push main branch with force spec
+        ref_spec = f"+refs/heads/{branch}:refs/heads/{branch}".encode("ascii")
         porcelain.push(repo, target_url, refspecs=[ref_spec])
         print(f"\n[SUCCESS] 🎉 Successfully uploaded project to https://github.com/{username}/{repo_name} on branch '{branch}'!")
         
         # Also sync master branch if pushing main
         if branch == "main":
             try:
-                master_spec = b"refs/heads/master:refs/heads/master"
+                master_spec = b"+refs/heads/master:refs/heads/master"
                 porcelain.push(repo, target_url, refspecs=[master_spec])
                 print(f"[SUCCESS] Synced 'master' branch as well.")
             except Exception:
