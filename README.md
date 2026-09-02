@@ -1,10 +1,11 @@
 # ⚡ Quantum AI / ML for Industrial Predictive Maintenance
 ### *Forecasting Equipment Failure from Sensor Streams using Quantum Time-Series & Kernel Methods*
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0333/predictive-maintenance/blob/main/predictive_maintenance.ipynb)
+[![Open Qiskit IBM Quantum in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/25A31A0333/predictive-maintenance/blob/main/Run_In_The_Quantum_Computer.ipynb)
+[![Open Quantum Predictive Maintenance in Colab](https://img.shields.io/badge/Colab-Predictive%20Maintenance-F9AB00?style=flat&logo=googlecolab)](https://colab.research.google.com/github/25A31A0333/predictive-maintenance/blob/main/predictive_maintenance.ipynb)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![PennyLane 0.35+](https://img.shields.io/badge/PennyLane-0.35%2B-purple.svg)](https://pennylane.ai/)
-[![Scikit-Learn 1.3+](https://img.shields.io/badge/Scikit--Learn-1.3%2B-orange.svg)](https://scikit-learn.org/)
+[![Qiskit 2.x](https://img.shields.io/badge/Qiskit-2.5%2B-6929C4.svg)](https://qiskit.org/)
+[![PennyLane 0.45+](https://img.shields.io/badge/PennyLane-0.45%2B-purple.svg)](https://pennylane.ai/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
