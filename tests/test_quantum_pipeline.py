@@ -136,3 +136,42 @@ def test_quantum_regressors_and_baselines():
     assert metrics.rmse >= 0.0
     assert metrics.mae >= 0.0
     assert isinstance(metrics.estimated_cost_savings_usd, float)
+
+
+def test_qiskit_statevector_sampler_and_databin_extraction():
+    """
+    Validates Qiskit 1.x/2.x StatevectorSampler, DataBin extraction,
+    and ensures no AttributeError on classical register access.
+    """
+    from src.quantum.run_in_the_quantum_computer import (
+        create_sensor_quantum_circuit,
+        run_local_simulation,
+        extract_counts_from_pub_result,
+    )
+    from qiskit import QuantumCircuit
+    from qiskit.primitives import StatevectorSampler
+
+    # 1. Test custom named ClassicalRegister
+    sensor_angles = np.array([0.5 * np.pi, 0.25 * np.pi, 0.75 * np.pi, 0.1 * np.pi])
+    qc_hw = create_sensor_quantum_circuit(sensor_angles, num_qubits=4, reps=1, register_name="sensor_meas")
+    assert len(qc_hw.cregs) == 1
+    assert qc_hw.cregs[0].name == "sensor_meas"
+    assert "measure" in qc_hw.count_ops()
+
+    counts = run_local_simulation(qc_hw, shots=2048)
+    assert isinstance(counts, dict)
+    assert sum(counts.values()) == 2048
+    assert len(counts) > 0
+
+    # 2. Test default QuantumCircuit(n, n) register (named 'c')
+    qc_default = QuantumCircuit(2, 2)
+    qc_default.h(0)
+    qc_default.cx(0, 1)
+    qc_default.measure(range(2), range(2))
+
+    sampler = StatevectorSampler()
+    pub_res = sampler.run([qc_default], shots=1024).result()[0]
+    counts_default = extract_counts_from_pub_result(pub_res, circuit=qc_default)
+    assert sum(counts_default.values()) == 1024
+    assert "00" in counts_default or "11" in counts_default
+

@@ -27,7 +27,7 @@ import urllib.parse
 from typing import Optional, List, Dict, Any
 
 
-def save_ibm_quantum_token(token: str, channel: str = "ibm_quantum", overwrite: bool = True):
+def save_ibm_quantum_token(token: str, channel: str = "ibm_quantum_platform", overwrite: bool = True):
     """
     Saves and validates an IBM Quantum API token using Qiskit Runtime Service.
     """
@@ -54,13 +54,13 @@ def save_ibm_quantum_token(token: str, channel: str = "ibm_quantum", overwrite: 
         print("[WARN] 'qiskit-ibm-runtime' is not installed.")
         print("Saving token to .env file instead...")
         _save_token_to_env("IBM_QUANTUM_TOKEN", token)
-        print("[SUCCESS] Saved token to .env. Install 'qiskit-ibm-runtime' to use IBM Quantum hardware:")
-        print("    pip install qiskit-ibm-runtime pennylane-qiskit")
+        print("[SUCCESS] Saved token to .env.")
     except Exception as e:
         print(f"[ERROR] Failed to authenticate with IBM Quantum: {e}")
+        _save_token_to_env("IBM_QUANTUM_TOKEN", token)
 
 
-def list_ibm_backends(channel: str = "ibm_quantum"):
+def list_ibm_backends(channel: str = "ibm_quantum_platform"):
     """Lists available IBM Quantum systems and simulators."""
     try:
         from qiskit_ibm_runtime import QiskitRuntimeService
@@ -140,7 +140,7 @@ def _save_token_to_env(key_name: str, token_val: str):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="IBM Quantum / IBM Cloud Token Setup for Predictive Maintenance")
     parser.add_argument("--token", type=str, help="IBM Quantum API Token (from quantum.ibm.com)")
-    parser.add_argument("--channel", type=str, default="ibm_quantum", choices=["ibm_quantum", "ibm_cloud"], help="IBM Channel")
+    parser.add_argument("--channel", type=str, default="ibm_quantum_platform", choices=["ibm_quantum_platform", "ibm_cloud"], help="IBM Channel")
     parser.add_argument("--list-backends", action="store_true", help="List available IBM Quantum backends")
     parser.add_argument("--iam-api-key", type=str, help="IBM Cloud API Key to exchange for IAM Bearer token")
 

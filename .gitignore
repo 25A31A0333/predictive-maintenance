@@ -1,0 +1,33 @@
+# Environment variables, Secrets & API Tokens
+.env
+.env.*
+!.env.example
+*.token
+*.key
+credentials.json
+ibm_credentials.json
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest & Testing Cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Operating System & IDE Artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
